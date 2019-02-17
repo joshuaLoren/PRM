@@ -1,0 +1,103 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 17, 2019, 5:16:34 PM
+    Author     : small
+*/
+
+/* styles for small and medium screen sizes */
+@media only screen and (max-width: 961px) {
+  #left-side {
+    list-style-type: none;
+    background-color: tan;
+    display: none;
+  }
+
+  .navLeft {
+    display: inline-block;
+    padding-right: 6px;
+    padding-left: 10px;
+    float: right;
+  }
+
+  .navRight {
+    padding-left: 4px;
+  }
+
+  #mainTable {
+    margin-left: 1%;
+    margin-right: 1%;
+    border: none;
+  }
+
+  main {
+    background-color: white;
+    flex: 100%;
+  }
+
+  aside {
+    flex: 0;
+  }
+
+  #mainTable td, #mainTable th {
+    border: 1px solid #34495e;
+    padding: 1px;
+  }
+
+  #mainTable th {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    background-color: #34495e;
+    color: white;
+  }
+
+  .home {
+    margin-right: 0%;
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  .hiddenOnSmall {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .update {
+    background-color: #1abc9c;
+    color: white;
+    padding: 2px 4px;
+    margin: 0px 0px;
+    cursor: pointer;
+  }
+
+  .destroy {
+    background-color: #c0392b;
+    color: white;
+    padding: 2px 4px;
+    margin: 0px 0px;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #userStatus {
+    font-size: 10px;
+  }
+
+  .homeParagraph {
+    text-align: center;
+  }
+
+  ul.nav {
+    padding-inline-start: 0;
+  }
+
+  #logo {
+    width: 200px
+  }
+}

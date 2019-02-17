@@ -1,0 +1,399 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 17, 2019, 5:16:25 PM
+    Author     : small
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Avant Garde, Avantgarde, Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+
+.container {
+  display: -webkit-flex;
+  display: flex;
+}
+
+#banner {
+  background-color: #34495e;
+  color: white;
+  font-weight: bold;
+  height: 10%;
+  padding: 0;
+}
+
+#banner h1 {
+  margin-top: 0;
+}
+
+#userStatus {
+  /*p elements come with padding and margin*/
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+nav {
+  background-color: #bdc3c7;
+  overflow: hidden;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.navRight {
+  /* note to self: inline block seems easier than floats...less magic involved. */
+  display: inline-block;
+  text-align: center;
+}
+
+.navLeft {
+  display: none;
+}
+
+/* main and left side have padding bottom equal to height of footer */
+main {
+  background-color: white;
+  flex: 85%;
+}
+
+#mainFooter {
+  background-color: #bdc3c7;
+  color: white;
+  height: 100px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+#mainFooter p {
+  padding-bottom: 10px;
+}
+
+/* main and left side have padding bottom equal to height of footer */
+aside {
+  flex: 15%;
+}
+
+#left-side li {
+  padding-top: 10px;
+  font-size: 23px;
+  font: bold;
+}
+
+.card {
+  width: 60%;
+  align-content: center;
+  height: 25%;
+  box-shadow: 0 2px 4px 0;
+  transition: 0.2s;
+  margin-left: 20%;
+  background-color: #bdc3c7;
+  border-left-style: solid;
+  border-left-color: #16a085;
+  border-left-width: 7px;
+  color: #34495e;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.card h3, p {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.card p {
+  font-style: italic;
+  font-size: 18px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0;
+  cursor: pointer;
+}
+
+.home {
+  margin-right: 10%;
+}
+
+#mainTable {
+  font-family: Arial;
+  border-collapse: collapse;
+  margin-left: 15%;
+  margin-right: 25%;
+  margin-top: 20px;
+  border: 1px solid #bdc3c7;
+  border-radius: 25px 10px;
+  padding: 50px;
+}
+
+#mainTable td, #mainTable th {
+  border: 2px solid #34495e;
+  padding: 10px;
+}
+
+#mainTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #34495e;
+  color: white;
+}
+
+#categoriesTable {
+  font-family: Arial;
+  border-collapse: collapse;
+  margin-left: 15%;
+  margin-right: 25%;
+  margin-top: 20px;
+  border: 1px solid #bdc3c7;
+  border-radius: 25px 10px;
+  padding: 50px;
+}
+
+#categoriesTable td, #categoriesTable th {
+  border: 2px solid #34495e;
+  padding: 10px;
+}
+
+#categoriesTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #34495e;
+  color: white;
+}
+
+#articleImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  display: table;
+  margin: 0 auto;
+}
+
+article {
+  text-align: center;
+}
+
+.paragraph {
+  display: inline-block;
+  text-align: left;
+}
+
+.textbox {
+  width: 450px;
+  height: 450px;
+}
+
+.textboxtitle {
+  height: 50px;
+  width: 450px;
+}
+
+form {
+  text-align: center;
+}
+
+a:link {
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+.greenLink a:link {
+  font-weight: bold;
+  font-size: 16px;
+  color: #1abc9c;
+  text-decoration: none;
+}
+
+.greenLink a:visited {
+  font-weight: bold;
+  font-size: 16px;
+  color: #1abc9c;
+  text-decoration: none;
+}
+
+.mainTableSections a:link {
+  color: white;
+}
+
+.mainTableSections a:visited {
+  color: white;
+}
+
+#left-side a:link {
+  color: #2c3e50;
+}
+
+#left-side a:visited {
+  color: #2c3e50;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+*/
+.disable {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.update {
+  background-color: #1abc9c;
+  color: white;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.destroy {
+  background-color: #c0392b;
+  color: white;
+  padding: 10px 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.shareLinkMyPapers p {
+  text-align: left;
+}
+
+.shareLinkMyPapers a {
+  color: #1abc9c;
+}
+
+.displayDropdown {
+  display: none;
+}
+
+.peerReviewDropdown div:hover .displayDropdown {
+  display: inline;
+  cursor: pointer;
+}
+
+.peerReviewDropdown p {
+  color: #1abc9c;
+  font-weight: bold;
+}
+
+.peerReviewDropdown ul li {
+  background: #1abc9c;
+  list-style: none;
+  color: #1abc9c;
+  font-weight: bold;
+}
+
+.peerReviewDropdown ul {
+  padding: 0;
+  margin: 0;
+}
+
+.home {
+  text-align: center;
+}
+
+.homeParagraph {
+  text-align: left;
+}
+
+.homeParagraph a:link {
+  color: #1abc9c;
+}
+
+.homeParagraph a:visited {
+  color: #1abc9c;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.homeIcons {
+  text-align: center;
+  margin-top: 75px;
+}
+
+.circle {
+  height: 200px;
+  width: 200px;
+  background-color: #1abc9c;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 20px;
+}
+
+.circle p {
+  margin-top: 60px;
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+
+#logo {
+  width: 300px;
+  height: 75px;
+}
+
+/*
+
+idea for making a link look like a button:
+
+https://stackoverflow.com/questions/2906582/how-to-create-an-html-button-that-acts-like-a-link
+
+*/
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  color: white;
+}
+
+a.green {
+  color: #1abc9c;
+}
+
+ul {
+  padding-left: 10px;
+  ;
+}
+
+main h4 {
+  text-align: center;
+}
+
+.temp {
+  text-align: left;
+}
+
+.temp2 {
+  text-align: center;
+}
+
+#articleImage {
+  padding-top: 20px;
+}
