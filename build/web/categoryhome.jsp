@@ -54,66 +54,66 @@
                         <th>Genre</th>
                         <th>Author</th>
                         <th class="hiddenOnSmall">Date Uploaded</th>
-                        <th class="hiddenOnSmall">Overall Tone</th>
+                        <th class="hiddenOnSmall">Rating</th>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>
                         <td class="hiddenOnSmall">Overall Tone Filler: Watson API</td>
                     </tr>
                     <tr>
-                        <td>Paper Filler<a href="item.html" class="green"> View</a></td>
+                        <td>Paper Filler<a href="item.jsp" class="green"> View</a></td>
                         <td>Category Filler</td>
                         <td>John Doe</td>
                         <td class="hiddenOnSmall">Date Filler</td>

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/essaynew.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/index.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/navigation.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/footer.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/item.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/peerreviewshow.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/header.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/myitems.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/categories.jsp</file>
-            <file>file:/C:/Users/small/OneDrive/Docs/Documents/NetBeansProjects/PeerReviewMe/web/categoryhome.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/about.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/contact.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/feedback.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/src/java/main/CatalogController.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/header.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

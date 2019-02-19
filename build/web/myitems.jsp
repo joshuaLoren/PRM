@@ -54,9 +54,9 @@
                                     <p>Peer Reviews</p>
                                     <section class="displayDropdown mainTableSections">
                                         <ul>
-                                            <li><a href="peerreviewshow.html">John Doe</a></li>
-                                            <li><a href="peerreviewshow.html">Christina S.</a></li>
-                                            <li><a href="peerreviewshow.html">Bill Nye</a></li>
+                                            <li><a href="feedback.jsp">John Doe</a></li>
+                                            <li><a href="feedback.jsp">Christina S.</a></li>
+                                            <li><a href="feedback.jsp">Bill Nye</a></li>
                                         </ul>
                                     </section>
                                 </div>
@@ -72,9 +72,9 @@
                                     <p>Peer Reviews</p>
                                     <section class="displayDropdown mainTableSections">
                                         <ul>
-                                            <li><a href="peerreviewshow.html">John Doe</a></li>
-                                            <li><a href="peerreviewshow.html">Christina S.</a></li>
-                                            <li><a href="peerreviwshow.html">Bill Nye</a></li>
+                                            <li><a href="feedback.jsp">John Doe</a></li>
+                                            <li><a href="feedback.jsp">Christina S.</a></li>
+                                            <li><a href="feedback.jsp">Bill Nye</a></li>
                                         </ul>
                                     </section>
                                 </div>
@@ -104,7 +104,7 @@
                     <h4 class="temp">All table data will be dynamically generated from MySQL Database</h4>
                     <table>
                         <tr>
-                            <td>Paper Filler<a href="peerreviewcreate.html" class="green disabled"> Write Review</a></td>
+                            <td>Paper Filler<a href="feedback.jsp" class="green disabled"> Write Review</a></td>
                         </tr>
                     </table>
                 </section>

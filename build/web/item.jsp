@@ -80,8 +80,9 @@
                         As he buckled the swollen belt suddenly my groin felt the chill of death.
                     </p>
                     <footer>
-                        <a href="peerreviewCreate.html" class="disabled update button">Peer Review This Essay</a>
-                        <a href="myitems.html" class="update button">Save It (Peer Review Later)</a>
+                        <a href="feedback.jsp" class="update button">Peer Review This Essay</a>
+                        <a href="myitems.jsp" class="update button">Save It (Peer Review Later)</a>
+                        <a href="categoryhome.jsp" class="update button">Return</a>
                     </footer>
                 </article>
             </main>

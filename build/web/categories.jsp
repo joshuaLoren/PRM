@@ -35,24 +35,46 @@
                     <li><a href="index.jsp">Home</a></li>
                     <li><a href="categories.jsp">Categories</a></li>
                     <li><a href="myitems.jsp">My Papers</a></li>
-                    <!--<li><a href="essaynew.html">New Paper</a></li>-->
                     <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
                 </ul>
             </aside>
             <main class="itempage">
-                <h4>This page fulfills at least two category requirement</h4>
-                <section class="card" onclick="location.href = 'categoryhome.html';">
+                <section class="card">
                     <h3>Narrative Essays</h3>
                     <p>Tell a story</p>
                 </section>
-                <section class="card" onclick="location.href = 'categoryhome.html';">
+
+                <div>
+                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                    <c:forEach items="${userInfo.langs}" var="lang">
+                        <span>${lang}</span><br />
+                    </c:forEach> --%>
+                </div>
+
+                <section class="card">
                     <h3>Persuasive Essays</h3>
                     <p>Convince the reader</p>
                 </section>
-                <section class="card" onclick="location.href = 'categoryhome.html';">
+
+                <div>
+                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                    <c:forEach items="${userInfo.langs}" var="lang">
+                        <span>${lang}</span><br />
+                    </c:forEach> --%>
+                </div>
+
+                <section class="card">
                     <h3>Expository Essays</h3>
                     <p>Write a tutorial</p>
                 </section>
+
+                <div>
+                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                    <c:forEach items="${userInfo.langs}" var="lang">
+                        <span>${lang}</span><br />
+                    </c:forEach> --%>
+                </div>
+
             </main>
         </div>
         <jsp:include page="footer.jsp"/>
