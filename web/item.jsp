@@ -30,15 +30,7 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigation.jsp"/>
         <div class="container">
-            <aside>
-                <ul id="left-side">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="categories.jsp">Categories</a></li>
-                    <li><a href="myitems.jsp">My Papers</a></li>
-                    <!--<li><a href="essaynew.html">New Paper</a></li>-->
-                    <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
-                </ul>
-            </aside>
+            <jsp:include page="aside.jsp"/>
             <main class="paper">
                 <!--
                         item will be dynamically generated
@@ -53,36 +45,17 @@
                 <article>
                     <!-- image courtesy of https://www.pexels.com/collections/stationery-qsocrh9/ -->
                     <header>
-                        <img id="articleImage" src="images/default.jpeg" alt="the default image">
-                        <h2>Once More To The Lake</h2>
-                        <h3>By E.B. White </h3>
+                        <!--<img id="articleImage" src="images/default.jpeg" alt="the default image">-->
+                        <img id="articleImage" src="images/${essay.getUrl()}" alt=" image">
+                        <h2>${essay.itemName}</h2>
                     </header>
                     <p class="paragraph">
-                        I looked at the boy, who was silently watching his fly, and it was my hands that held his rod, my eyes watching. I felt dizzy and didn't know which rod I was at the end of.
-                        He suddenly realizes how death is so close, because he is now the father and not the son. White references this in the final lines:
-                        I watched him, his hard little body, skinny and bare, saw him wince slightly as he pulled up around his vitals the small, soggy, icy garment.
-                        As he buckled the swollen belt suddenly my groin felt the chill of death.
-                        <br>
-                        <br>
-                        I looked at the boy, who was silently watching his fly, and it was my hands that held his rod, my eyes watching. I felt dizzy and didn't know which rod I was at the end of.
-                        He suddenly realizes how death is so close, because he is now the father and not the son. White references this in the final lines:
-                        I watched him, his hard little body, skinny and bare, saw him wince slightly as he pulled up around his vitals the small, soggy, icy garment.
-                        As he buckled the swollen belt suddenly my groin felt the chill of death.
-                        I looked at the boy, who was silently watching his fly, and it was my hands that held his rod, my eyes watching. I felt dizzy and didn't know which rod I was at the end of.
-                        He suddenly realizes how death is so close, because he is now the father and not the son. White references this in the final lines:
-                        I watched him, his hard little body, skinny and bare, saw him wince slightly as he pulled up around his vitals the small, soggy, icy garment.
-                        As he buckled the swollen belt suddenly my groin felt the chill of death.
-                        <br>
-                        <br>
-                        I looked at the boy, who was silently watching his fly, and it was my hands that held his rod, my eyes watching. I felt dizzy and didn't know which rod I was at the end of.
-                        He suddenly realizes how death is so close, because he is now the father and not the son. White references this in the final lines:
-                        I watched him, his hard little body, skinny and bare, saw him wince slightly as he pulled up around his vitals the small, soggy, icy garment.
-                        As he buckled the swollen belt suddenly my groin felt the chill of death.
+                        ${essay.itemDescription}
                     </p>
                     <footer>
                         <a href="feedback.jsp" class="update button">Peer Review This Essay</a>
                         <a href="myitems.jsp" class="update button">Save It (Peer Review Later)</a>
-                        <a href="categoryhome.jsp" class="update button">Return</a>
+                        <a href="categories" class="update button">Return</a>
                     </footer>
                 </article>
             </main>

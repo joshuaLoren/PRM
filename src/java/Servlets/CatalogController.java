@@ -5,9 +5,16 @@
  */
 package Servlets;
 
+import Data.ItemDB;
+import Models.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author small
  */
+@WebServlet("/categories.")
 public class CatalogController extends HttpServlet {
 
     /**
@@ -56,7 +64,31 @@ public class CatalogController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+
+        ItemDB db = new ItemDB();
+        String itemNumber = request.getParameter("itemCode");
+
+        if (itemNumber == "-1") {
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet CatalogController</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Error! ItemCode needs a value</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        } else if (itemNumber != null) {
+            request.setAttribute("essay", ItemDB.getItem(itemNumber));
+            getServletContext().getRequestDispatcher("/item.jsp").forward(request, response);
+        } else {
+            request.setAttribute("database", db);
+            getServletContext().getRequestDispatcher("/categories.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -70,7 +102,7 @@ public class CatalogController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     /**

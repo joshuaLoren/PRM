@@ -11,12 +11,12 @@ package Models;
  */
 public class Item {
 
-    String itemCode = "";
-    String itemName = "";
-    String itemCategory = "";
-    String itemDescription = "";
-    int itemRating = 0;
-    String imageUrl = "";
+    public String itemCode = "";
+    public String itemName = "";
+    public String itemCategory = "";
+    public String itemDescription = "";
+    public int itemRating = 0;
+    public String imageUrl = "";
 
     /*
         No-arg constructor
@@ -35,12 +35,12 @@ public class Item {
      */
     public Item(String itemCode, String itemName, String itemCategory, String itemDescription, int itemRating,
             String imageUrl) {
-        itemCode = "";
-        itemName = "";
-        itemCategory = "";
-        itemDescription = "";
-        itemRating = 0;
-        imageUrl = "";
+        this.itemCode = itemCode;
+        this.itemName = itemName;
+        this.itemCategory = itemCategory;
+        this.itemDescription = itemDescription;
+        this.itemRating = itemRating;
+        this.imageUrl = imageUrl;
     }
 
     public String getItemCode() {

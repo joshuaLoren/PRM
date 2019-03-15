@@ -53,6 +53,14 @@ nav {
   display: flex;
 }
 
+nav select {
+   display: none;
+}
+
+div ul li{
+  list-style-type: none;
+}
+
 .navRight {
   /* note to self: inline block seems easier than floats...less magic involved. */
   display: inline-block;
@@ -92,14 +100,42 @@ aside {
   font: bold;
 }
 
-.card {
+.list {
   width: 60%;
   align-content: center;
   height: 25%;
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  width: 60%;
+  align-content: center;
+  height: 10%;
   box-shadow: 0 2px 4px 0;
   transition: 0.2s;
   margin-left: 20%;
   background-color: #bdc3c7;
+  border-left-style: solid;
+  border-left-color: #16a085;
+  border-left-width: 7px;
+  color: #34495e;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.select {
+    display: none;
+}
+
+.card-white {
+  width: 60%;
+  align-content: center;
+  height: 15%;
+  box-shadow: 0 2px 4px 0;
+  transition: 0.2s;
+  margin-left: 20%;
+  background-color: white;
   border-left-style: solid;
   border-left-color: #16a085;
   border-left-width: 7px;
@@ -118,10 +154,10 @@ aside {
   font-size: 18px;
 }
 
-.card:hover {
+/*.card:hover {
   box-shadow: 0 4px 8px 0;
   cursor: pointer;
-}
+}*/
 
 .home {
   margin-right: 10%;
@@ -181,6 +217,12 @@ aside {
   max-height: 300px;
   display: table;
   margin: 0 auto;
+}
+
+.aboutandcontactimages {
+  display: table;
+  margin: 0 auto;
+  padding-top: 50px;
 }
 
 article {

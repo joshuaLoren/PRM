@@ -31,15 +31,7 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigation.jsp"/>
         <div class="container">
-            <aside>
-                <ul id="left-side">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="categories.jsp">Categories</a></li>
-                    <li><a href="myitems.jsp">My Papers</a></li>
-                    <!--<li><a href="essaynew.html">New Paper</a></li>-->
-                    <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
-                </ul>
-            </aside>
+            <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp2">Create New Paper</h1>
 

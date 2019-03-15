@@ -4,7 +4,10 @@
     Author     : small
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Models.Item"%>
+<%@page import="Data.ItemDB"%>
+<%@ page language="java" contentType="text/html; charset=US-ASCII" pageEncoding="US-ASCII" import="java.util.*"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,51 +33,46 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigation.jsp"/>
         <div class="container">
-            <aside>
-                <ul id="left-side">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="categories.jsp">Categories</a></li>
-                    <li><a href="myitems.jsp">My Papers</a></li>
-                    <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
-                </ul>
-            </aside>
+            <jsp:include page="aside.jsp"/>
             <main class="itempage">
                 <section class="card">
                     <h3>Narrative Essays</h3>
-                    <p>Tell a story</p>
                 </section>
 
-                <div>
-                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                    <c:forEach items="${userInfo.langs}" var="lang">
-                        <span>${lang}</span><br />
-                    </c:forEach> --%>
+                <div class="card-white">
+                    <ul>
+                        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                        <c:forEach items="${database.getPersuasiveList()}" var="essay">
+                            <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a></li>
+                            </c:forEach>
+                    </ul>
                 </div>
 
                 <section class="card">
                     <h3>Persuasive Essays</h3>
-                    <p>Convince the reader</p>
                 </section>
 
-                <div>
-                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                    <c:forEach items="${userInfo.langs}" var="lang">
-                        <span>${lang}</span><br />
-                    </c:forEach> --%>
+                <div class="card-white">
+                    <ul>
+                        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                        <c:forEach items="${database.getNarrativeList()}" var="essay">
+                            <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a></li>
+                            </c:forEach>
+                    </ul>
                 </div>
 
                 <section class="card">
                     <h3>Expository Essays</h3>
-                    <p>Write a tutorial</p>
                 </section>
 
-                <div>
-                    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                    <c:forEach items="${userInfo.langs}" var="lang">
-                        <span>${lang}</span><br />
-                    </c:forEach> --%>
+                <div class="card-white">
+                    <ul>
+                        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                        <c:forEach items="${database.getExpositoryList()}" var="essay">
+                            <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a>
+                            </c:forEach>
+                    </ul>
                 </div>
-
             </main>
         </div>
         <jsp:include page="footer.jsp"/>

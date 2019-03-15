@@ -31,15 +31,7 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigation.jsp"/>
         <div class="container">
-            <aside>
-                <ul id="left-side">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="categories.jsp">Categories</a></li>
-                    <li><a href="myitems.jsp">My Papers</a></li>
-                    <!--<li><a href="essaynew.html">New Paper</a></li>-->
-                    <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
-                </ul>
-            </aside>
+            <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp2">New Peer Review</h1>
 
@@ -47,7 +39,16 @@
 
                     <input type="text" name="body" value="" class="textbox">
                     <br><br>
-                    <input type="text" value="publish" class="update button">
+                    <div class="selectbox">
+                        <select>
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 stars</option>
+                        </select>
+                    </div>
+                    <input type="text" value="Publish" class="update button">
                 </form>
             </main>
 

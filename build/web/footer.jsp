@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <footer id="mainFooter">
     <p>Copyright &copy; PeerReviewMe 2019</p>
 </footer>

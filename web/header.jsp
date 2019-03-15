@@ -5,8 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header id="banner">
     <img id="logo" src="images/logo.jpg" alt="banner logo">
-    <p id="userStatus">Signed out</p>
+
+    <c:if test = "${(sessionScope.loggedIn == null)}">
+        <p id="userStatus">Signed out</p>
+    </c:if>
+    <c:if test = "${sessionScope.loggedIn == true}">
+        <p id="userStatus">Hello, Joshua Small</p>
+    </c:if>
+
 </header>

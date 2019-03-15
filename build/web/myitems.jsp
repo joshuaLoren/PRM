@@ -30,83 +30,39 @@
         <jsp:include page="header.jsp"/>
         <jsp:include page="navigation.jsp"/>
         <div class="container">
-            <aside>
-                <ul id="left-side">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="categories.jsp">Categories</a></li>
-                    <li><a href="myitems.jsp">My Papers</a></li>
-                    <!--<li><a href="essaynew.html">New Paper</a></li>-->
-                    <li><a href="https://cloud.ibm.com/apidocs">Watson API</a></li>
-                </ul>
-            </aside>
+            <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp">My Papers</h1>
                 <h4 class="temp">All table data will be dynamically generated from MySQL Database</h4>
                 <section>
+
                     <table>
                         <tr>
-                            <td>My Essay 1 <a href="item.html" class="green"> View</a></td>
-                            <td class="hiddenOnSmall">Narrative</td>
-                            <td><a href="item.html" class="update button white mainTableSections">Update</a></td>
-                            <td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>
-                            <td class="peerReviewDropdown">
-                                <div>
-                                    <p>Peer Reviews</p>
-                                    <section class="displayDropdown mainTableSections">
-                                        <ul>
-                                            <li><a href="feedback.jsp">John Doe</a></li>
-                                            <li><a href="feedback.jsp">Christina S.</a></li>
-                                            <li><a href="feedback.jsp">Bill Nye</a></li>
-                                        </ul>
-                                    </section>
-                                </div>
-                            </td>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Rating</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                         </tr>
-                        <tr>
-                            <td>My Essay 12 <a href="item.html" class="green"> View</a></td>
-                            <td class="hiddenOnSmall">Persuasive</td>
-                            <td><a href="item.html" class="update button white mainTableSections">Update</a></td>
-                            <td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>
-                            <td class="peerReviewDropdown">
-                                <div>
-                                    <p>Peer Reviews</p>
-                                    <section class="displayDropdown mainTableSections">
-                                        <ul>
-                                            <li><a href="feedback.jsp">John Doe</a></li>
-                                            <li><a href="feedback.jsp">Christina S.</a></li>
-                                            <li><a href="feedback.jsp">Bill Nye</a></li>
-                                        </ul>
-                                    </section>
-                                </div>
-                            </td>
-                        </tr>
+
+
+                        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                        <c:forEach items="${sessionScope.userProfile.userItems}" var="essay">
+                            <tr>
+                                <td>${essay.item.itemName}</td>
+                                <td>${essay.rating}</td>
+                                <td>${essay.madeIt}</td>
+                                <td><a href="item.html" class="update button white mainTableSections">Update</a></td>
+                                <td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>
+                            </tr>
+
+                        </c:forEach>
+
+
+
                     </table>
-                    <div class="shareLinkMyPapers">
-                        <p>Click<a href="myitems.html"> here </a>to create a new essay to share</p>
-                    </div>
-                </section>
-                <section>
-                    <header>
-                        <h1>Papers I've Peer Reviewed</h1>
-                    </header>
-                    <h4 class="temp">All table data will be dynamically generated from MySQL Database</h4>
-                    <table id="mainTableSections">
-                        <tr>
-                            <td>Paper Filler<a href="item.html" class="green"> View</a></td>
-                            <td>Narrative</td>
-                        </tr>
-                    </table>
-                </section>
-                <section>
-                    <header>
-                        <h1>Papers I've Saved</h1>
-                    </header>
-                    <h4 class="temp">All table data will be dynamically generated from MySQL Database</h4>
-                    <table>
-                        <tr>
-                            <td>Paper Filler<a href="feedback.jsp" class="green disabled"> Write Review</a></td>
-                        </tr>
-                    </table>
+
+
                 </section>
             </main>
         </div>

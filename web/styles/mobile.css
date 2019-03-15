@@ -10,6 +10,14 @@ and open the template in the editor.
 
 /* styles for small and medium screen sizes */
 @media only screen and (max-width: 961px) {
+    
+/*  nav ul {
+      display: none; 
+  }
+  nav select {
+      display: inline-block; 
+  }
+  */
   #left-side {
     list-style-type: none;
     background-color: tan;
@@ -64,6 +72,8 @@ and open the template in the editor.
   .hiddenOnSmall {
     display: none;
   }
+  
+
 }
 
 @media only screen and (max-width: 650px) {
