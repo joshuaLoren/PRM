@@ -40,21 +40,22 @@ public class ProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession(false);
-        UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
         boolean loggedIn = true;
         session.setAttribute("loggedIn", loggedIn);
-
 
         /*
             CHECK TO SEE IF THERE IS A USER
          */
-        if (session == null) {
+        if (session.getAttribute("theUser") == null) {
             User user = UserDB.getFirstItem();
             session.setAttribute("theUser", user);
 
-            userProfile.setUser(user);
+            UserProfile userProfile = new UserProfile();
+            //userProfile.setUser(user);
             //a few test items are loaded via UserProfile's .getItems() method
-            userProfile.userItems = userProfile.getItems();
+            if (userProfile.userItems.isEmpty()) {
+                //userProfile.userItems = userProfile.getItems();
+            }
             session.setAttribute("userProfile", userProfile);
 
             /*
@@ -86,83 +87,169 @@ public class ProfileController extends HttpServlet {
                 /*
                     IF ACTION VALUE IS SIGNOUT
                  */
+
+                String[] itemList = request.getParameterValues("itemList");
+
                 if (action.equals("signout")) {
                     session.invalidate();
                     getServletContext()
                             .getRequestDispatcher("/index.jsp")
                             .forward(request, response);
-                    /*
-                    FOR ALL ACTIONS
-                     */
-                } else if (!(action.equals("")) || action != null) {
 
+                } else if (action.equals("save")) {
+                    String itemCode = request.getParameter("itemCode");
+
+                    /* Logic for checking itemcode with itemlist
+                    boolean exists = false;
+                    for (int i = 0; i <= itemList.length; i++) {
+                        if (itemCode == itemList[i]) {
+                            exists = true;
+                        }
+                    }
+                     */
+                    UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
+                    boolean itemAlreadyExists = false;
+                    //check if item exists in user profile already, if it does go to profile page
+//                    for (int i = 0; i < userProfile.userItems.size(); i++) {//check if item code is in userItems
+//                        if (userProfile.userItems.get(i).item.itemCode == itemCode) {
+//                            itemAlreadyExists = true;
+//                            getServletContext()
+//                                    .getRequestDispatcher("/myitems.jsp")
+//                                    .forward(request, response);
+//                        }
+//                    }
+
+                    for (UserItem item : userProfile.userItems) {
+                        if (item.item.itemCode.equals(itemCode)) {
+                            itemAlreadyExists = true;
+                            getServletContext()
+                                    .getRequestDispatcher("/myitems.jsp")
+                                    .forward(request, response);
+                        }
+                    }
+
+                    if (itemAlreadyExists == false) {
+                        //item, rating, madeit
+                        UserItem newUserItem = new UserItem(ItemDB.getItem(itemCode), 0, false);
+                        userProfile.addItem(newUserItem);
+                        getServletContext()
+                                .getRequestDispatcher("/myitems.jsp")
+                                .forward(request, response);
+                    }
+
+                    getServletContext()
+                            .getRequestDispatcher("/index.jsp")
+                            .forward(request, response);
+
+                } else if (action.equals("updateProfile")) {
+
+                    getServletContext()
+                            .getRequestDispatcher("/index.jsp")
+                            .forward(request, response);
+
+                } else if (action.equals("gotofeedback")) {
+
+                    getServletContext()
+                            .getRequestDispatcher("/feedback.jsp")
+                            .forward(request, response);
+
+                } else if (action.equals("updateRating")) {
+
+                    String itemCode = request.getParameter("itemCode");
+                    int rating = Integer.parseInt(request.getParameter("rating"));
+                    String madeIt = request.getParameter("madeIt");
+                    Boolean madeItB = Boolean.parseBoolean(madeIt);
+
+                    UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
+                    UserItem updateUserItem = new UserItem(ItemDB.getItem(itemCode), rating, madeItB);
+
+                    userProfile.updateItem(updateUserItem, rating, itemCode, madeItB);
+
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response);
+
+                } else if (action.equals("deleteItem")) {
+
+                    String itemCode = request.getParameter("itemCode");
+                    UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
+
+                    userProfile.removeItem(itemCode);
+
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response);
+
+                } else if (action.equals("updateFlag")) {
+
+                    getServletContext()
+                            .getRequestDispatcher("/index.jsp")
+                            .forward(request, response);
+                } else {
+
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response);
                     /*
                         IF WE ARE IN THE ITEM VIEW THERE WILL ONLY BE ONE ITEM
                         GET A LIST OF ITEMS FROM THE ITEM VIEW
                         AND SAVE THEM AS ITEMLIST
                      */
-                    String[] itemList = request.getParameterValues("itemList");
-                    if (itemList.equals("") || itemList == null) {
-                        getServletContext()
-                                .getRequestDispatcher("/myitems.jsp")
-                                .forward(request, response);
-                    } else {
-                        //Checks the http request for parameter(s) called “itemCode”
-                        //This tells you which item is to be added to (or updated in) the profile.
-                        /*
+
+                    //Checks the http request for parameter(s) called “itemCode”
+                    //This tells you which item is to be added to (or updated in) the profile.
+                    /*
                             REMEMBER THAT USER PROFILE HAS A LIST OF USER ITEMS
 
                             ITEMCODE TELLS US WHICH ITEM FROM THE VIEW IS TO BE SAVED
                             OR WHICH ITEM SHOULD BE UPDATED.
-                         */
-                        String itemCode = request.getParameter("itemCode");
-                        boolean exists = false;
-                        for (int i = 0; i <= itemList.length; i++) {
-                            if (itemCode == itemList[i]) {
-                                exists = true;
-                            }
-                        }
-
-                        /*
-                            IF THIS ITEM IS NOT IN THE ITEM LIST FROM REQUEST PARAM DISPATCH TO PROFILE VIEW
-                         */
-                        if (exists = false) {
-                            getServletContext()
-                                    .getRequestDispatcher("/myitems.jsp")
-                                    .forward(request, response);
-                        } else {
-                            /*
-                                SAVE
-                             */
-
-                            boolean itemAlreadyExists = false;
-                            //check if item exists in user profile already, if it does go to profile page
-                            for (int i = 0; i <= userProfile.userItems.size(); i++) {//check if item code is in userItems
-                                if (userProfile.userItems.get(i).item.itemCode == itemCode) {
-                                    itemAlreadyExists = true;
-                                    getServletContext()
-                                            .getRequestDispatcher("/myitems.jsp")
-                                            .forward(request, response);
-                                }
-                            }
-
-                            if (itemAlreadyExists = false) {
-                                //item, rating, madeit
-                                UserItem newUserItem = new UserItem(ItemDB.getItem(itemCode), 0, false);
-                                userProfile.addItem(newUserItem);
-
-                                getServletContext()
-                                        .getRequestDispatcher("/myitems.jsp")
-                                        .forward(request, response);
-                            }
-
-                        }
-
-                    }
-
+                     */
+//                        String itemCode = request.getParameter("itemCode");
+//                        boolean exists = false;
+//                        for (int i = 0; i <= itemList.length; i++) {
+//                            if (itemCode == itemList[i]) {
+//                                exists = true;
+//                            }
+//                        }
+//
+//                        /*
+//                            IF THIS ITEM IS NOT IN THE ITEM LIST FROM REQUEST PARAM DISPATCH TO PROFILE VIEW
+//                         */
+//                        if (exists = false) {
+//                            getServletContext()
+//                                    .getRequestDispatcher("/myitems.jsp")
+//                                    .forward(request, response);
+//                        } else {
+//                            /*
+//                                SAVE
+//                             */
+//                            UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
+//                            boolean itemAlreadyExists = false;
+//                            //check if item exists in user profile already, if it does go to profile page
+//                            for (int i = 0; i <= userProfile.userItems.size(); i++) {//check if item code is in userItems
+//                                if (userProfile.userItems.get(i).item.itemCode == itemCode) {
+//                                    itemAlreadyExists = true;
+//                                    getServletContext()
+//                                            .getRequestDispatcher("/myitems.jsp")
+//                                            .forward(request, response);
+//                                }
+//                            }
+//
+//                            if (itemAlreadyExists = false) {
+//                                //item, rating, madeit
+//
+//                                //UserItem newUserItem = new UserItem(ItemDB.getItem(itemCode), 0, false);
+//                                //userProfile.addItem(newUserItem);
+//                                getServletContext()
+//                                        .getRequestDispatcher("/myitems.jsp")
+//                                        .forward(request, response);
+//                            }
+//
+//                        }
+//
+//                    }
                 }
             }
-
         }
     } //end processRequest
 

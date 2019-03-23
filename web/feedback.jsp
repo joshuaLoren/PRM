@@ -34,21 +34,32 @@
             <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp2">New Peer Review</h1>
+                <h1 class="temp2">${essay.itemCode}</h1>
+                <p><%= request.getParameter("itemCode")%></p>
 
-                <form action="/">
 
-                    <input type="text" name="body" value="" class="textbox">
+
+
+
+                <form action="myitems?action=updateRating&itemCode=${essay.itemCode}">
+                    <input type="text" name="peerReviewText" class="textbox">
+                    <input type="hidden" name="action" value="updateRating">
+                    <input type="hidden" name="itemCode" value="<%= request.getParameter("itemCode")%>">
                     <br><br>
-                    <div class="selectbox">
-                        <select>
-                            <option value="1">1 Star</option>
-                            <option value="2">2 Stars</option>
-                            <option value="3">3 stars</option>
-                            <option value="4">4 Stars</option>
-                            <option value="5">5 stars</option>
-                        </select>
-                    </div>
-                    <input type="text" value="Publish" class="update button">
+                    Rating:
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="4">5</option>
+                    </select>
+                    Did you write this paper?
+                    <select name="madeIt">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <input type="submit">
                 </form>
             </main>
 

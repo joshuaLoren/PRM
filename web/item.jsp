@@ -48,13 +48,31 @@
                         <!--<img id="articleImage" src="images/default.jpeg" alt="the default image">-->
                         <img id="articleImage" src="images/${essay.getUrl()}" alt=" image">
                         <h2>${essay.itemName}</h2>
+                        <h2>${essay.itemCode}</h2>
                     </header>
                     <p class="paragraph">
                         ${essay.itemDescription}
                     </p>
                     <footer>
-                        <a href="feedback.jsp" class="update button">Peer Review This Essay</a>
-                        <a href="myitems.jsp" class="update button">Save It (Peer Review Later)</a>
+                        <!--                        <a href="feedback.jsp" class="update button">Peer Review This Essay (Rate It)</a>-->
+
+                        <!--                        <form action="myitems?action=deleteItem" method="post">
+                                                        <input type="hidden" name="itemList" value="${userItems.item.itemCode}">
+                                                        <input type="submit" name="updateButton" value="destroy" class="destroy button white mainTableSections">
+                                                    </form>-->
+
+                        <form action="myitems?action=save" method="post">
+                            <input type="hidden" name="itemList" value="${userItems.item.itemCode}">
+                            <input type="hidden" name="itemCode" value="${essay.itemCode}">
+                            <input type="submit" name="updateButton" value="Save It (Peer Review Later)" class="update button">
+                        </form>
+
+                        <form action="myitems?action=gotofeedback&itemCode=${essay.itemCode}" method="post">
+                            <input type="hidden" name="itemCode" value="${essay.itemCode}">
+                            <input type="submit" name="updateButton" value="Rate It" class="update button">
+                        </form>
+
+
                         <a href="categories" class="update button">Return</a>
                     </footer>
                 </article>

@@ -47,4 +47,12 @@ public class UserItem implements Serializable {
         this.madeIt = madeIt;
     }
 
+    public String getItemName() {
+        return item.itemName;
+    }
+
+    public String getItemCategory() {
+        return item.itemCategory;
+    }
+
 }

@@ -8,13 +8,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav>
     <ul>
-        <li class="navRight"><a href="myitems">My Papers</a></li>
+
 
         <c:if test = "${(sessionScope.loggedIn == null)}">
             <li class="navRight"><a href="signin">Sign in</a></li>
+            <li class="navRight"><a href="myitems.jsp">My Papers</a></li>
             </c:if>
             <c:if test = "${sessionScope.loggedIn == true}">
             <li class="navRight"><a href="signin?action=signout">Sign out</a></li>
+            <li class="navRight"><a href="myitems">My Papers</a></li>
             </c:if>
 
 

@@ -42,6 +42,11 @@
                 <div class="card-white">
                     <ul>
                         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+                        <!--
+                            Note to self the hidden field should appear here. With a form that
+                            has a hidden field with name="itemList" that way you can check to see
+                            if an item exists in the catalog before saving it
+                        -->
                         <c:forEach items="${database.getPersuasiveList()}" var="essay">
                             <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a></li>
                             </c:forEach>
