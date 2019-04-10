@@ -8,6 +8,10 @@
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>Servlets.ProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SQLGatewayServlet</servlet-name>
+        <servlet-class>Servlets.SQLGatewayServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CatalogController</servlet-name>
         <url-pattern>/categories</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SQLGatewayServlet</servlet-name>
+        <url-pattern>/SQLGatewayServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

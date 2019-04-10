@@ -13,7 +13,9 @@
         <p id="userStatus">Signed out</p>
     </c:if>
     <c:if test = "${sessionScope.loggedIn == true}">
-        <p id="userStatus">Hello, Joshua Small</p>
+        <p id="userStatus">Hello, ${user.firstName}</p>
     </c:if>
+
+  
 
 </header>

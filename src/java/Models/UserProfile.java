@@ -5,8 +5,15 @@
  */
 package Models;
 
+import Data.ConnectionPool;
 import Data.ItemDB;
+import Sql.Utility;
+
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -59,30 +66,17 @@ public class UserProfile implements Serializable {
     }
 
     public void updateItem(UserItem userItem, int rating, String itemCode, Boolean madeItB) {
-        //top5Books.set(1, "Introductoin to Algorithms");
+
         UserItem updatedItem = new UserItem(ItemDB.getItem(itemCode), rating, madeItB);
 
         int index;
-//        for (UserItem uItem : userItems) {
-//            if (uItem.item.itemCode.equals(itemCode)) {
-//
-//                index = userItems.indexOf(userItem);
-//
-//                System.out.println("Index: " + index);
-//                System.out.println("uItem.item.itemCode: " + uItem.item.itemCode);
-//                System.out.println("itemCode: " + itemCode);
-//
-//                //userItems.set(index, updatedItem);
-//            }
-//        }
 
         for (int i = 0; i < userItems.size(); i++) {
+        	
+        	
+        	
             if (userItems.get(i).item.itemCode.equals(itemCode)) {
                 index = i;
-
-//                System.out.println("Index: " + index);
-//                System.out.println("userItems.get(i).item.itemCode: " + userItems.get(i).item.itemCode);
-//                System.out.println("itemCode: " + itemCode);
                 userItems.set(index, updatedItem);
             }
         }
@@ -90,18 +84,6 @@ public class UserProfile implements Serializable {
     }
 
     public ArrayList getItems() {
-
-//        Item item1 = new Item("10", "The Two Towers", "narrative", description, 5, "image1.jpeg");
-//        Item item2 = new Item("11", "Peter Pan", "persuasive", description, 5, "image1.jpeg");
-//        Item item3 = new Item("12", "Tommorrowland", "expository", description, 5, "image1.jpeg");
-//
-//        UserItem userItem1 = new UserItem(item1, 4, true);
-//        UserItem userItem2 = new UserItem(item2, 5, false);
-//        UserItem userItem3 = new UserItem(item3, 0, false);
-//
-//        userItems.add(userItem1);
-//        userItems.add(userItem2);
-//        userItems.add(userItem3);
         return userItems;
     }
 
@@ -124,5 +106,52 @@ public class UserProfile implements Serializable {
     public User getUser() {
         return user;
     }
+    
+    public void addInitialItems() {
+
+    	ConnectionPool pool = ConnectionPool.getInstance();
+    	Connection connection = pool.getConnection();
+    	PreparedStatement ps = null;
+    	ResultSet rs = null;
+    	
+        
+        String query = "SELECT * FROM UserItems ";
+  
+           
+        try {
+        	ps = connection.prepareStatement(query);
+        	rs = ps.executeQuery();
+            //ps.setString(1, userId);
+        	UserItem userItem = null;
+        	
+        	while (rs.next()) {
+        		userItem = new UserItem();
+        		Item item = new Item();
+        		
+        		userItem.setMadeIt(rs.getString("madeIt"));
+        		userItem.setRating(rs.getInt("rating"));
+        		
+                item.setItemCode(rs.getString("itemCode"));
+                item.setItemName(rs.getString("itemName"));
+                item.setItemCategory(rs.getString("itemCategory"));
+                item.setItemDescription(rs.getString("itemDescription"));
+                item.setItemRating(rs.getInt("itemRating"));
+                item.setUrl(rs.getString("imageUrl"));
+            	userItem.setItem(item);
+                
+        		userItems.add(userItem);
+        		
+      
+        	}
+    
+        } catch (SQLException e) {
+        	System.out.println(e);
+      
+        } finally {
+        	Utility.closePreparedStatement(ps);
+        	pool.freeConnection(connection);
+        }
+    
+    	}
 
 }

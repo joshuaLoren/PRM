@@ -47,9 +47,9 @@
                             has a hidden field with name="itemList" that way you can check to see
                             if an item exists in the catalog before saving it
                         -->
-                        <c:forEach items="${database.getPersuasiveList()}" var="essay">
+                        <c:forEach items="${database.getNarrative()}" var="essay">
                             <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a></li>
-                            </c:forEach>
+                        </c:forEach>
                     </ul>
                 </div>
 
@@ -60,7 +60,7 @@
                 <div class="card-white">
                     <ul>
                         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                        <c:forEach items="${database.getNarrativeList()}" var="essay">
+                        <c:forEach items="${database.getPersuasive()}" var="essay">
                             <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a></li>
                             </c:forEach>
                     </ul>
@@ -73,7 +73,7 @@
                 <div class="card-white">
                     <ul>
                         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                        <c:forEach items="${database.getExpositoryList()}" var="essay">
+                        <c:forEach items="${database.getExpository()}" var="essay">
                             <li><a href="categories?itemCode=${essay.itemCode}"><c:out value="${essay.itemName}"/></a>
                             </c:forEach>
                     </ul>
