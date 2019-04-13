@@ -96,6 +96,8 @@
 
 
                     </section>
+                
+                    <p class="extra_bottom_padding"></p>
             </main>
         </div>
         <jsp:include page="footer.jsp"/>

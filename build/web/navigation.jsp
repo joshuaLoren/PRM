@@ -11,7 +11,7 @@
 
 
         <c:if test = "${(sessionScope.loggedIn == null)}">
-            <li class="navRight"><a href="signin">Sign in</a></li>
+            <li class="navRight"><a href="login.jsp">Sign in</a></li>
             <li class="navRight"><a href="myitems.jsp">My Papers</a></li>
             </c:if>
             <c:if test = "${sessionScope.loggedIn == true}">

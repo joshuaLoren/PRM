@@ -18,6 +18,9 @@ body {
   font-family: Avant Garde, Avantgarde, Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 
+.extra_bottom_padding {
+   padding-bottom: 150px;
+}
 .container {
   display: -webkit-flex;
   display: flex;

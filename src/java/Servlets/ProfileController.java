@@ -22,11 +22,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.owasp.esapi.ESAPI;
+import org.owasp.esapi.errors.IntrusionException;
+import org.owasp.esapi.errors.ValidationException;
 
 /**
  *
@@ -48,21 +53,55 @@ public class ProfileController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession();
-        boolean loggedIn = true;
-        session.setAttribute("loggedIn", loggedIn);
-        
         User user = (User) session.getAttribute("user");
         UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
+        String message ="";
 
         /*
             CHECK TO SEE IF THERE IS A USER
-         */
+        */
+        
+        //if there is no user, validate 
         if (session.getAttribute("user") == null || (session.getAttribute("userProfile") == null)) {
-            user = UserDB.getUser("1");
-            session.setAttribute("user", user);
             
+            String username = null;
+            username = request.getParameter("username");
+            try {
+                ESAPI.validator().getValidInput("User Name",
+                        username, "Email", 100, false);
+            } catch (ValidationException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IntrusionException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String password = null;
+            password = request.getParameter("password");
+            try {
+                ESAPI.validator().getValidInput("Password", password, "SafeString", 100, false);
+            } catch (ValidationException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IntrusionException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            user = UserDB.getUserIdByUsernameAndPassword(username,password);
+            
+            //if user does not exist redirect to login.jsp and display message
+            if(user == null) {
+                
+                message = "Unable to login, please try again";
+                request.setAttribute("message", message);
+                getServletContext()
+                        .getRequestDispatcher("/login.jsp")
+                        .forward(request, response);
+            }
+            
+            //user exists, set login to true
+            boolean loggedIn = true;
+            session.setAttribute("loggedIn", loggedIn);
+            session.setAttribute("user", user);
             UserProfile profile = new UserProfile();
-            profile.addInitialItems();
+            profile.addInitialItems(user.getUserID());
             session.setAttribute("userProfile", profile);
 
             /*
@@ -92,8 +131,7 @@ public class ProfileController extends HttpServlet {
             } else {
                 /*
                     IF ACTION VALUE IS SIGNOUT
-                 */
-
+                */
                 String[] itemList = request.getParameterValues("itemList");
 
                 if (action.equals("signout")) {

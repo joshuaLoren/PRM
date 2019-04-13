@@ -9,7 +9,6 @@ import Data.ItemDB;
 import Models.Item;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
@@ -67,7 +66,6 @@ public class CatalogController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        
         ItemDB db = new ItemDB();
         String itemNumber = request.getParameter("itemCode");
 

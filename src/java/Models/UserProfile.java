@@ -107,7 +107,7 @@ public class UserProfile implements Serializable {
         return user;
     }
     
-    public void addInitialItems() {
+    public void addInitialItems(String id) {
 
     	ConnectionPool pool = ConnectionPool.getInstance();
     	Connection connection = pool.getConnection();
@@ -115,21 +115,21 @@ public class UserProfile implements Serializable {
     	ResultSet rs = null;
     	
         
-        String query = "SELECT * FROM UserItems ";
+        String query = "SELECT * FROM UserItems where userId=?";
   
            
         try {
         	ps = connection.prepareStatement(query);
-        	rs = ps.executeQuery();
-            //ps.setString(1, userId);
+                ps.setString(1, id);
+                rs = ps.executeQuery();
         	UserItem userItem = null;
         	
         	while (rs.next()) {
-        		userItem = new UserItem();
-        		Item item = new Item();
+        	userItem = new UserItem();
+        	Item item = new Item();
         		
-        		userItem.setMadeIt(rs.getString("madeIt"));
-        		userItem.setRating(rs.getInt("rating"));
+        	userItem.setMadeIt(rs.getString("madeIt"));
+        	userItem.setRating(rs.getInt("rating"));
         		
                 item.setItemCode(rs.getString("itemCode"));
                 item.setItemName(rs.getString("itemName"));
@@ -139,7 +139,7 @@ public class UserProfile implements Serializable {
                 item.setUrl(rs.getString("imageUrl"));
             	userItem.setItem(item);
                 
-        		userItems.add(userItem);
+                userItems.add(userItem);
         		
       
         	}
