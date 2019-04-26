@@ -34,7 +34,7 @@
         <div class="container">
             <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
-                <h1 class="temp">My Papers</h1>
+                <h1 class="temp">My Owned Papers </h1>
 
 
                 <c:if test = "${sessionScope.userProfile.getItems().size() == 0}">
@@ -58,36 +58,92 @@
 
 
 
+
                             <c:forEach items="${sessionScope.userProfile.getItems()}" var="userItems">
-                                <tr>
 
-                                    <td><a href="categories?itemCode=${userItems.item.itemCode}">${userItems.item.itemName}</a></td>
-                                    <td>${userItems.item.itemCategory}</td>
-
-                                    <c:if test = "${userItems.rating == 0}">
-                                        <td>none</td>
-                                    </c:if>
-                                    <c:if test = "${userItems.rating != 0}">
-                                        <td>${userItems.rating}/5</td>
-                                    </c:if>
-
-                                    <td>${userItems.madeIt}</td>
-
-                                    <td><form action="myitems?action=gotofeedback&itemCode=${userItems.item.itemCode}" method="post">
-                                            <input type="hidden" name="fakeItemList" value="${userItems.item.itemCode}">
-                                            <input type="submit" name="updateButton" value="update" class="update button white mainTableSections">
-                                        </form></td>
-
-                                    <td><form action="myitems?action=deleteItem" method="post">
-                                            <input type="hidden" name="fakeItemList" value="${userItems.item.itemCode}">
-                                            <input type="hidden" name="itemCode" value="${userItems.item.itemCode}">
-                                            <input type="submit" name="updateButton" value="destroy" class="destroy button white mainTableSections">
-                                        </form></td>
-
-                                    <!--<td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>-->
-                                </tr>
+                                <c:if test = "${userItems.madeIt == true}">
 
 
+                                    <tr>
+
+                                        <td><a href="categories?itemCode=${userItems.item.itemCode}"><c:out value="${userItems.item.itemName}"/></a></td>
+                                        <td><c:out value="${userItems.item.itemCategory}"/></td>
+
+                                        <c:if test = "${userItems.rating == 0}">
+                                            <td>none</td>
+                                        </c:if>
+                                        <c:if test = "${userItems.rating != 0}">
+                                            <td><c:out value="${userItems.rating}"/>/5</td>
+                                        </c:if>
+
+                                        <td><c:out value="${userItems.madeIt}"/></td>
+
+                                        <td><form action="myitems?action=gotoupdatepaper&itemCode=${userItems.item.itemCode}" method="post">
+                                                <input type="hidden" name="fakeItemList" value="${userItems.item.itemCode}">
+                                                <input type="submit" name="updateButton" value="edit" class="update button white mainTableSections">
+                                            </form></td>
+
+                                        <td><form action="myitems?action=deleteItem" method="post">
+                                                <input type="hidden" name="fakeItemList" value="${userItems.item.itemCode}">
+                                                <input type="hidden" name="itemCode" value="${userItems.item.itemCode}">
+                                                <input type="submit" name="updateButton" value="destroy" class="destroy button white mainTableSections">
+                                            </form></td>
+
+                                        <!--<td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>-->
+                                    </tr>
+
+                                </c:if>
+                            </c:forEach>
+
+                        </table>
+                        <a href="essaynew.jsp">Create a new paper</a>
+                    </section>
+
+                    <p></p>
+
+                    <!-- Peer Reviewed Papers (Not the Owner) -->
+                    <h1 class="temp">Peer Review Papers </h1>
+                    <section>
+
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Rating</th>
+                                <th>Owner</th>
+                                <th>&nbsp;</th>
+
+                            </tr>
+
+
+                            <c:forEach items="${sessionScope.userProfile.getItems()}" var="userItems">
+
+                                <c:if test = "${userItems.madeIt == false}">
+                                    <tr>
+
+                                        <td><a href="categories?itemCode=${userItems.item.itemCode}"><c:out value="${userItems.item.itemName}"/></a></td>
+                                        <td><c:out value="${userItems.item.itemCategory}"/></td>
+
+                                        <c:if test = "${userItems.rating == 0}">
+                                            <td>none</td>
+                                        </c:if>
+                                        <c:if test = "${userItems.rating != 0}">
+                                            <td><c:out value="${userItems.rating}"/>/5</td>
+                                        </c:if>
+
+                                        <td><c:out value="${userItems.madeIt}"/></td>
+
+                                        <td><form action="myitems?action=gotoupdatefeedback&itemCode=${userItems.item.itemCode}" method="post">
+                                                <input type="hidden" name="fakeItemList" value="${userItems.item.itemCode}">
+                                                <input type="submit" name="updateButton" value="update" class="update button white mainTableSections">
+                                            </form></td>
+
+
+
+                                        <!--<td><a href="myitems.html" class="destroy button white mainTableSections">Destroy</a></td>-->
+                                    </tr>
+
+                                </c:if>
                             </c:forEach>
 
 
@@ -96,9 +152,19 @@
 
 
                     </section>
-                
+
+
+
+
+
+                    <section>
+                    </section>
+
+
                     <p class="extra_bottom_padding"></p>
             </main>
+
+
         </div>
         <jsp:include page="footer.jsp"/>
     </body>

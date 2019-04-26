@@ -35,16 +35,26 @@
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp2">New Peer Review</h1>
                 <h1 class="temp2">${essay.itemCode}</h1>
-                <p><%= request.getParameter("itemCode")%></p>
+
+                <p>${essay.itemName}</p>
+                <p>${essay.itemCategory}</p>
+                <p>${essay.itemDescription}</p>
+
+                <!--                    public String itemDescription = "";
+                    public int itemRating = 0;
+                    public String imageUrl = "";-->
 
 
 
-
-
-                <form action="myitems?action=updateRating&itemCode=${essay.itemCode}">
-                    <input type="text" name="peerReviewText" class="textbox">
-                    <input type="hidden" name="action" value="updateRating">
+                <form action="myitems?action=newRating&itemCode=${essay.itemCode}">
+                    <input type="hidden" name="action" value="newRating">
                     <input type="hidden" name="itemCode" value="<%= request.getParameter("itemCode")%>">
+                    <input type="hidden" name="title" value="${essay.itemName}">
+                    <input type="hidden" name="category" value="${essay.itemCategory}">
+                    <input type="hidden" name="description" value="${essay.itemDescription}">
+
+
+
                     <br><br>
                     Rating:
                     <select name="rating">
@@ -54,13 +64,10 @@
                         <option value="4">4</option>
                         <option value="4">5</option>
                     </select>
-                    Did you write this paper?
-                    <select name="madeIt">
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
+
                     <input type="submit">
                 </form>
+                <p class="extra_bottom_padding"></p>
             </main>
 
         </div>

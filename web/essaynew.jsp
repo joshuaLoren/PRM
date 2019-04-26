@@ -35,17 +35,25 @@
             <main id="mainTable" class="myItemsMainTable">
                 <h1 class="temp2">Create New Paper</h1>
 
-                <form action="/">
+
+                <form action="myitems?action=newpaper&itemCode=${essay.itemCode}">
+                    <input type="hidden" name="action" value="newpaper">
                     Title:<br>
                     <input type="text" name="title" value="" class="textboxtitle">
                     <br>
                     Essay Body:<br>
                     <input type="text" name="body" value="" class="textbox">
                     <br><br>
-                    <input type="text" value="analyze" class="update button">
-                    <input type="text" value="publish" class="update button">
+                    Category:
+                    <select name="category">
+                        <option value="narrative">narrative</option>
+                        <option value="persuasive">persuasive</option>
+                        <option value="expository">expository</option>
+                    </select>
+                    <br><br>
+
+                    <input type="submit">
                 </form>
-                <img src="images/toneAnalyzerExample.png" alt="watsonexample" class="toneAnalyzerExample">
             </main>
 
         </div>

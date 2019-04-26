@@ -26,11 +26,4 @@
         <li class="navLeft"><a href="about.jsp">About</a></li>
     </ul>
 
-    <select>
-        <option value="" selected="selected">Menu</option>
-        <option value="/index.jsp">Home</option>
-        <option value="/myitems">My Papers</option>
-        <option value="/contact.jsp">Contact</option>
-        <option value="/about.jsp">About Us</option>
-    </select>
 </nav>

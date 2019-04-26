@@ -56,8 +56,13 @@ nav {
   display: flex;
 }
 
-nav select {
-   display: none;
+
+@media (max-width: 560px) {
+
+    .navLeft a:link {font-size: 11px;}
+    .navRight a:link {font-size: 13px; font-weight: bold;}
+    #mainTable {padding: 20px;}
+
 }
 
 div ul li{

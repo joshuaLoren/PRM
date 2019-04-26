@@ -12,6 +12,7 @@ import Models.User;
 import Models.UserItem;
 import Models.UserProfile;
 import Data.ConnectionPool;
+import Data.UserItemDB;
 import Sql.Utility;
 
 import java.io.IOException;
@@ -69,19 +70,25 @@ public class ProfileController extends HttpServlet {
             try {
                 ESAPI.validator().getValidInput("User Name",
                         username, "Email", 100, false);
-            } catch (ValidationException ex) {
+            } catch (ValidationException | IntrusionException | NoClassDefFoundError ex) {
                 Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IntrusionException ex) {
-                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                message = "Unable to login, please try again";
+                request.setAttribute("message", message);
+                getServletContext()
+                        .getRequestDispatcher("/login.jsp")
+                        .forward(request, response);
             }
             String password = null;
             password = request.getParameter("password");
             try {
                 ESAPI.validator().getValidInput("Password", password, "SafeString", 100, false);
-            } catch (ValidationException ex) {
+            } catch (ValidationException | IntrusionException | NoClassDefFoundError ex) {
                 Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IntrusionException ex) {
-                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+                message = "Unable to login, please try again";
+                request.setAttribute("message", message);
+                getServletContext()
+                        .getRequestDispatcher("/login.jsp")
+                        .forward(request, response);
             }
             
             user = UserDB.getUserIdByUsernameAndPassword(username,password);
@@ -119,6 +126,13 @@ public class ProfileController extends HttpServlet {
          */
         if (session != null) {
             String action = request.getParameter("action");
+            try {
+                ESAPI.validator().getValidInput("Action", action, "SafeString", 100, true);
+            } catch (ValidationException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IntrusionException ex) {
+                Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             /*
                 IF THERE IS NO QUERY STRING FOR THE ACTION PARAM GO TO MYITEMS.JSP
@@ -178,22 +192,147 @@ public class ProfileController extends HttpServlet {
                             .forward(request, response);
 
                 } else if (action.equals("gotofeedback")) {
-
+                    
+                    String itemCode = request.getParameter("itemCode");
+                    request.setAttribute("essay", ItemDB.getItem(itemCode));
                     getServletContext()
                             .getRequestDispatcher("/feedback.jsp")
                             .forward(request, response);
-
-                } else if (action.equals("updateRating")) {
+                }else if (action.equals("gotoupdatefeedback")) {
 
                     String itemCode = request.getParameter("itemCode");
+                    request.setAttribute("essay", ItemDB.getItem(itemCode));
+                    getServletContext()
+                            .getRequestDispatcher("/updatefeedback.jsp")
+                            .forward(request, response);
+                            
+                }else if (action.equals("gotoupdatepaper")) {
+                      request.setAttribute("message", message);
+                    getServletContext()
+                            .getRequestDispatcher("/essayupdate.jsp")
+                            .forward(request, response);
+
+                }else if (action.equals("newpaper")) {
+                    
+                  
+                    String title = request.getParameter("title");
+                    String category = request.getParameter("category");
+                    String description = request.getParameter("body");
+                    
+                    Boolean madeItB = true;
+                    
+                    userProfile = (UserProfile) session.getAttribute("userProfile");
+                    
+                    int rows = ItemDB.getRows();
+                    rows++;
+                    System.out.println("Rows" + rows);
+                    String itemCode = Integer.toString(rows); 
+                    //String itemCode, String itemName, String itemCategory, String itemDescription, int itemRating, String imageUrl )
+                    Item item = new Item(itemCode, title, category, description, 0, "image1.jpeg");
+                    ItemDB.addItem(itemCode, title, category, description, 0, "image1.jpeg");
+                    // (itemCode, itemName, itemCategory, itemDescription, itemRating, imageUrl, userID, madeIt, rating)"
+                    UserItemDB.addItem(itemCode, title, category, description, 0, "image1.jpeg", user.getUserID(), true, 0);
+                    System.out.println(itemCode + title + category + description);
+                    
+                    //UserItem is going to need to take itemcode, cetegory, and item description as parameters
+                    // public UserItem(Item item, int rating, boolean madeIt) {
+                    UserItem userItem = new UserItem(item, 0, true);
+                    //UserProfile can take useritem as parameter
+                    userProfile.addItem(userItem);
+
+       
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response); 
+                } else if (action.equals("updatepaper")) {
+                   
+
+                    String itemCode = request.getParameter("itemCode");
+                    String title = request.getParameter("title");
+                    String category = request.getParameter("category");
+                    String description = request.getParameter("body");
+                   
+                    
+                    userProfile = (UserProfile) session.getAttribute("userProfile");
+                    //String itemCode, String itemName, String itemCategory, String itemDescription, int itemRating, String imageUrl )
+                    Item item = new Item(itemCode, title, category, description, 0, "image1.jpeg");
+                    //(String itemName, String itemCategory, String itemDescription, int itemRating, String imageUrl, String itemCode )
+                    ItemDB.updatePaper(title, category, description, 0, "image1.jpeg", itemCode);
+                    // (itemCode, itemName, itemCategory, itemDescription, itemRating, imageUrl, userID, madeIt, rating)"
+                    UserItemDB.updatePaper(title, category, description, 0, "image1.jpeg",true, 0, itemCode, user.getUserID());
+                    
+                    System.out.println(itemCode + title + category + description);
+                    
+                    userProfile.emptyProfile();
+                    userProfile.addInitialItems(user.getUserID());
+                    //UserItem is going to need to take itemcode, cetegory, and item description as parameters
+                    // public UserItem(Item item, int rating, boolean madeIt) {
+                    //userProfile.updateItemById(user.getUserID(), itemCode);
+                    
+                    
+                    //UserItem updateUserPaper = new UserItem(ItemDB.getItem(itemCode), rating, madeItB);
+                    //userProfile.updateItem(updateUserItem, rating, itemCode, madeItB);
+                    //UserItem userItem = new UserItem(item, 0, true);
+                    //UserProfile can take useritem as parameter
+                    //userProfile.updatePaper(updateUserPaper, rating, itemCode, madeItB);
+
+       
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response); 
+                      
+             
+                
+                } else if (action.equals("newRating")) {
+
+//                                <input type="hidden" name="description" value="${essay.itemDescription}">
+//                    <input type="hidden" name="rating" value="${essay.itemRating}">
+//                    <input type="hidden" name="rating" value="${essay.imageUrl}">
+                    
+                    String itemCode = request.getParameter("itemCode");
+                    String category = request.getParameter("category");
+                    String title = request.getParameter("title");
+                    String description = request.getParameter("description");
                     int rating = Integer.parseInt(request.getParameter("rating"));
+                    String url = request.getParameter("url");
+                    System.out.println(itemCode);
+                   
                     String madeIt = request.getParameter("madeIt");
                     Boolean madeItB = Boolean.parseBoolean(madeIt);
 
+                    
+                    //String itemCode, String itemName, String itemCategory, String itemDescription, int itemRating, String imageUrl, String userID, Boolean madeIt, int rating )  {
+                    UserItemDB.newRating(itemCode, title, category, description, rating, "image1.jpeg", user.getUserID(), false, 0);
+                    
+                    //ItemDB.newRating(title, category, description, 0, "image1.jpeg", itemCode);
                     userProfile = (UserProfile) session.getAttribute("userProfile");
-                    UserItem updateUserItem = new UserItem(ItemDB.getItem(itemCode), rating, madeItB);
+                    UserItem updateUserItem = new UserItem(ItemDB.getItem(itemCode), rating, false);
+                    userProfile.addItem(updateUserItem);
 
-                    userProfile.updateItem(updateUserItem, rating, itemCode, madeItB);
+                    getServletContext()
+                            .getRequestDispatcher("/myitems.jsp")
+                            .forward(request, response);
+                }else if (action.equals("updateRating")) {
+
+                    String itemCode = request.getParameter("itemCode");
+                    String category = request.getParameter("category");
+                    String title = request.getParameter("title");
+                    String description = request.getParameter("description");
+                    int rating = Integer.parseInt(request.getParameter("rating"));
+                    String url = request.getParameter("url");
+                    System.out.println(itemCode);
+                  
+                    String madeIt = request.getParameter("madeIt");
+                    Boolean madeItB = Boolean.parseBoolean(madeIt);
+
+                    
+                    UserItemDB.updateRating(title, category, description, 0, "image1.jpeg",false, 0, itemCode, user.getUserID());
+                    ItemDB.updateRating(title, category, description, 0, "image1.jpeg", itemCode);
+                    UserItemDB.updateRatingforOwner(itemCode, rating);
+                    ItemDB.updateRatingforOwner(itemCode, rating);
+                    userProfile = (UserProfile) session.getAttribute("userProfile");
+                    UserItem updateUserItem = new UserItem(ItemDB.getItem(itemCode), rating, false);
+                    userProfile.updateItem(updateUserItem, rating, itemCode, false);
 
                     getServletContext()
                             .getRequestDispatcher("/myitems.jsp")
@@ -204,6 +343,8 @@ public class ProfileController extends HttpServlet {
                     String itemCode = request.getParameter("itemCode");
                     userProfile = (UserProfile) session.getAttribute("userProfile");
 
+                    UserItemDB.deleteItem(itemCode, user.getUserID());
+                    ItemDB.deleteItem(itemCode);
                     userProfile.removeItem(itemCode);
 
                     getServletContext()

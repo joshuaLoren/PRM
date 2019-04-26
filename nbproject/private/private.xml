@@ -3,13 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/myitems.jsp</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/categories.jsp</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/src/java/Data/ConnectionPool.java</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/header.jsp</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/src/java/Models/UserItem.java</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/src/java/Servlets/ProfileController.java</file>
-            <file>file:/C:/Users/small/Desktop/Development/netbeans/PeerReviewMe/web/login.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/src/java/Data/ItemDB.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/src/java/Data/UserItemDB.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/src/java/Data/UserDB.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/web/essaynew.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/src/java/Servlets/ProfileController.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/src/java/Models/User.java</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/web/essayupdate.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/web/feedback.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/web/item.jsp</file>
+            <file>file:/C:/Users/small/Desktop/Development/peer-review-me/PeerReviewMe/web/myitems.jsp</file>
         </group>
     </open-files>
 </project-private>

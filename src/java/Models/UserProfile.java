@@ -153,5 +153,55 @@ public class UserProfile implements Serializable {
         }
     
     	}
+    
+     public void updateItemById(String id, String itemCode) {
+
+    	ConnectionPool pool = ConnectionPool.getInstance();
+    	Connection connection = pool.getConnection();
+    	PreparedStatement ps = null;
+    	ResultSet rs = null;
+    	
+        
+        String query = "SELECT * FROM UserItems where userId=? and itemCode=?";
+  
+           
+        try {
+        	ps = connection.prepareStatement(query);
+                ps.setString(1, id);
+                ps.setString(2, itemCode);
+                rs = ps.executeQuery();
+        	UserItem userItem = null;
+        	
+        	while (rs.next()) {
+        	userItem = new UserItem();
+        	Item item = new Item();
+        		
+        	userItem.setMadeIt(rs.getString("madeIt"));
+        	userItem.setRating(rs.getInt("rating"));
+        		
+                item.setItemCode(rs.getString("itemCode"));
+                item.setItemName(rs.getString("itemName"));
+                item.setItemCategory(rs.getString("itemCategory"));
+                item.setItemDescription(rs.getString("itemDescription"));
+                item.setItemRating(rs.getInt("itemRating"));
+                item.setUrl(rs.getString("imageUrl"));
+            	userItem.setItem(item);
+                
+                int result = Integer.parseInt(itemCode);
+                userItems.set(result,userItem);
+        		
+        		
+      
+        	}
+    
+        } catch (SQLException e) {
+        	System.out.println(e);
+      
+        } finally {
+        	Utility.closePreparedStatement(ps);
+        	pool.freeConnection(connection);
+        }
+    
+    	}
 
 }

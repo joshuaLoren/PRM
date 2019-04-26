@@ -33,41 +33,28 @@
         <div class="container">
             <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
-                <h1 class="temp2">New Peer Review</h1>
-                <h1 class="temp2">${essay.itemCode}</h1>
-
-                <p>${essay.itemName}</p>
-                <p>${essay.itemCategory}</p>
-                <p>${essay.itemDescription}</p>
-
-                <!--                    public String itemDescription = "";
-                    public int itemRating = 0;
-                    public String imageUrl = "";-->
+                <h1 class="temp2">Update Paper IC: <%= request.getParameter("itemCode")%></h1>
 
 
-
-                <form action="myitems?action=newRating&itemCode=${essay.itemCode}">
-                    <input type="hidden" name="action" value="newRating">
+                <form action="myitems?action=updatepaper">
+                    <input type="hidden" name="action" value="updatepaper">
                     <input type="hidden" name="itemCode" value="<%= request.getParameter("itemCode")%>">
-                    <input type="hidden" name="title" value="${essay.itemName}">
-                    <input type="hidden" name="category" value="${essay.itemCategory}">
-                    <input type="hidden" name="description" value="${essay.itemDescription}">
-
-
-
+                    Title:<br>
+                    <input type="text" name="title" value="" class="textboxtitle">
+                    <br>
+                    Essay Body:<br>
+                    <input type="text" name="body" value="" class="textbox">
                     <br><br>
-                    Rating:
-                    <select name="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="4">5</option>
+                    Category:
+                    <select name="category">
+                        <option value="narrative">narrative</option>
+                        <option value="persuasive">persuasive</option>
+                        <option value="expository">expository</option>
                     </select>
+                    <br><br>
 
                     <input type="submit">
                 </form>
-                <p class="extra_bottom_padding"></p>
             </main>
 
         </div>
