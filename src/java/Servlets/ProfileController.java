@@ -57,6 +57,32 @@ public class ProfileController extends HttpServlet {
         User user = (User) session.getAttribute("user");
         UserProfile userProfile = (UserProfile) session.getAttribute("userProfile");
         String message ="";
+        String actionRegister = request.getParameter("actionRegister");
+        
+        System.out.println("Action Register: " + actionRegister);
+        
+        if (actionRegister != null && actionRegister.equals("actionRegister")) {
+          
+            
+                    String email = request.getParameter("username");
+                    String pass = request.getParameter("password");
+                    String firstname = request.getParameter("firstname");
+                    String lastname = request.getParameter("lastname");
+                    message = firstname + " thank you for signing up, you can now login";
+                    int userRows= UserDB.getRows();
+                    userRows++;
+                    String userID = Integer.toString(userRows); 
+                    
+                    //(String userID, String pass, String first_name, String last_name, String email) {
+                    UserDB.addUser(userID, pass, firstname, lastname, email);
+                    System.out.println(userID + " " + firstname + " " + lastname + " " + email);
+         
+                    request.setAttribute("message", message);
+                    getServletContext()
+                            .getRequestDispatcher("/login.jsp")
+                            .forward(request, response);
+                
+        } 
 
         /*
             CHECK TO SEE IF THERE IS A USER
@@ -169,7 +195,7 @@ public class ProfileController extends HttpServlet {
                                     .getRequestDispatcher("/myitems.jsp")
                                     .forward(request, response);
                         }
-                    }
+                    } 
                     
                     //if the item does not exist in the userProfile
                     if (itemAlreadyExists == false) {

@@ -35,7 +35,7 @@
                 <section class="home">
                     <h1>PeerReviewMe is a place to get feedback from your peers on your writing.</h1>
                     <p class="homeParagraph">Peer review breaks essays into three categories: Narrative, Persuasive and Expository.
-                        <a href="signup.html" class="disabled">Sign up</a> to create an account and start publishing your own papers,
+                        <a href="register.jsp" class="">Sign up</a> to create an account and start publishing your own papers,
                         or providing feedback on other member's papers by writing a peer review. During the process of
                         writing your own paper, you'll have the option to run your paper through the IBM Watson Tone
                         Analyzer, which will allow you to perfect the tone you want your essay to have.

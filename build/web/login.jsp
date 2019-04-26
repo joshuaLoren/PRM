@@ -35,7 +35,12 @@
             <main id="mainTable" class="myItemsMainTable">
                 <p>${message}</p>
                 <h1 class="temp2">Login</h1>
+
+
+
                 <form action="signin">
+
+                    <input type="hidden" name="actionRegister" value="notActionRegister">
                     Username
                     <input type="text" name="username">
                     <br><br>
@@ -44,9 +49,9 @@
                     <br><br>
                     <input type="submit" value="Sign In">
                 </form>
-                
+
                 <p class="extra_bottom_padding"></p>
-       
+
             </main>
 
         </div>

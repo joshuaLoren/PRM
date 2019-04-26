@@ -20,13 +20,7 @@ import java.util.ArrayList;
  */
 public class UserDB {
 
-//    public static ArrayList<User> getItems() {
-//        ArrayList<User> users = new ArrayList<>();
-//        users.add(new User("1", "Joshua", "Small", "jsmall17@uncc.edu"));
-//        users.add(new User("2", "Christina", "Small", "csmall@uncc.edu"));
-//        return users;
-//    }
-//
+
     public static ArrayList<User> getItems() {
     	
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -59,12 +53,6 @@ public class UserDB {
         }
     }
 
-//    public static User getFirstItem() {
-//        ArrayList<User> users = new ArrayList<>();
-//        users.add(new User("1", "Joshua", "Small", "jsmall17@uncc.edu"));
-//        users.add(new User("2", "Christina", "Small", "csmall@uncc.edu"));
-//        return users.get(0);
-//    }
     public static User getUser(String id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -129,5 +117,63 @@ public class UserDB {
             pool.freeConnection(connection);
         }
     }
+     
+      public static void addUser(String userID, String pass, String first_name, String last_name, String email) {
 
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+
+
+        
+        String query = "Insert Into Users (userID, pass, first_name, last_name, email)"
+                + "values (?,?,?,?,?)";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, userID);
+            ps.setString(2, pass);
+            ps.setString(3, first_name);
+            ps.setString(4, last_name);
+            ps.setString(5, email);
+  
+            ps.executeUpdate();
+          
+        } catch (SQLException e) {
+            System.out.println(e);
+          
+        } finally {
+            Utility.closeResultSet(rs);
+            Utility.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+
+   }  
+      
+      public static int getRows() {
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int counter = 0;
+
+        String query = "SELECT COUNT(*) from Users ";
+        try {
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery(query);
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            System.out.println(e);
+            return -1;
+        } finally {
+            Utility.closeResultSet(rs);
+            Utility.closePreparedStatement(ps);
+            pool.freeConnection(connection);
+        }
+
+   }
+      
 }

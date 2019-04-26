@@ -28,6 +28,10 @@
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SQLGatewayServlet</servlet-name>
         <url-pattern>/SQLGatewayServlet</url-pattern>

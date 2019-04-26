@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
         <link rel="stylesheet" type="text/css" href="styles/mobile.css">
-        <title>Categories</title>
+        <title>Register</title>
         <!--[if lt IE 9]>
                 <script>
                         document.createElement("article");
@@ -33,21 +33,22 @@
         <div class="container">
             <jsp:include page="aside.jsp"/>
             <main id="mainTable" class="myItemsMainTable">
-                <p>${message}</p>
-                <h1 class="temp2">Login</h1>
-
-
-
-                <form action="signin">
-
-                    <input type="hidden" name="actionRegister" value="notActionRegister">
-                    Username
+                <h1 class="temp2">Register</h1>
+                <form action="register">
+                    <input type="hidden" name="actionRegister" value="actionRegister">
+                    Email
                     <input type="text" name="username">
                     <br><br>
                     Password
                     <input type="text" name="password">
                     <br><br>
-                    <input type="submit" value="Sign In">
+                    First Name
+                    <input type="text" name="firstname">
+                    <br><br>
+                    Last Name
+                    <input type="text" name="lastname">
+                    <br><br>
+                    <input type="submit" value="Sign Up!">
                 </form>
 
                 <p class="extra_bottom_padding"></p>
